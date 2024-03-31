@@ -13,7 +13,7 @@ var saveButton;
 
 function uploadFile(tempInput)
 {
-    actualInput = $(`input[name="${tempInput.id}"]`)[0];
+    actualInput = document.querySelector(`input[name="${tempInput.id}"]`);
 
     let file = tempInput.files[0];
 
@@ -21,13 +21,20 @@ function uploadFile(tempInput)
     {
         let reader = new FileReader();
         reader.onload = function(e) {
-            actualInput.value = e.target.result;
+            let arrayBuffer = e.target.result;
+            let pdfUrl = URL.createObjectURL(new Blob([arrayBuffer], {type: 'application/pdf'}));
             pdfPreview = document.getElementById(`pdfPreview_${tempInput.id}`);
             pdfPreviewEmbed = document.getElementById(`pdfPreviewEmbed_${tempInput.id}`);
             uploadedFileName = document.getElementById(`uploadedFileName_${tempInput.id}`);
-            pdfPreviewEmbed.src = e.target.result;
+            pdfPreviewEmbed.src = pdfUrl;
             pdfPreview.classList.remove('d-none');
             uploadedFileName.classList.remove('d-none');
+        };
+        reader.readAsArrayBuffer(file);
+
+        reader = new FileReader();
+        reader.onload = function(e) {
+            actualInput.value = e.target.result;
         };
         reader.readAsDataURL(file);
 
@@ -126,7 +133,7 @@ function cropSelectedImage(element)
 {
     let key = element.getAttribute('data-id');
     let croppedImage = cropperMap.get(key).getCroppedCanvas().toDataURL();
-    actualInput = $(`input[name="${key}"]`)[0];
+    actualInput = document.querySelector(`input[name="${key}"]`);
     actualInput.value = croppedImage;
 
     // Previewing the cropped image in the preview container
