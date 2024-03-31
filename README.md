@@ -1,5 +1,9 @@
 ## File Upload Modal
 
+## Introduction
+
+This boilerplate code will help to upload images & pdfs in an interactive way from a modal. The code can be included in any html form. During form submission, the uploaded file will be submitted as a base64 encoded version. An optional file name can also be provided. The base64 encoded version of the file and the provided file name can then be sent to the server for further processing.
+
 ## Usage
 
 ### fileUploadModal Function
