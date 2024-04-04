@@ -54,7 +54,10 @@ function openModal(element)
                 minContainerWidth: 500,
                 minContainerHeight: 500,
                 minCanvasWidth: 500,
-                minCanvasHeight: 500
+                minCanvasHeight: 500,
+                ready() {
+                    cropper.setData(fileObject.cropperData);
+                }
             });
             fileObject.cropperObject = cropper;
 
@@ -121,7 +124,8 @@ function uploadFile(tempInput)
             fileName: '',
             originalImageData: '',
             cropperObject: null,
-            croppedImageData: ''
+            croppedImageData: '',
+            cropperData: ''
         };
 
         let reader = new FileReader();
@@ -181,6 +185,7 @@ function cropSelectedImage()
 {
     let fileObject = storedFiles.get(fileKey);
     let croppedImage = fileObject.cropperObject.getCroppedCanvas().toDataURL();
+    fileObject.cropperData = fileObject.cropperObject.getData();
     actualFileInput.value = croppedImage;
     fileObject.croppedImageData = croppedImage;
     let img = document.createElement('img');
