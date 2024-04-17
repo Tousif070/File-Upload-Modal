@@ -8,13 +8,14 @@ var pdfPreview = document.getElementById('pdfPreview');
 var pdfPreviewEmbed = document.getElementById('pdfPreviewEmbed');
 var uploadedFileName = document.getElementById('uploadedFileName');
 var saveButton = document.getElementById('saveButton');
-var fileSelected;
+var uploadButton;
 var cropperContainer = document.getElementById('cropperContainer');
 var cropperContainerPreview = document.getElementById('cropperContainerPreview');
 var cropButton = document.getElementById('cropButton');
 
 function openModal(element)
 {
+    uploadButton = element;
     $('#fileUploadModal').modal('show');
     fileKey = element.getAttribute('data-file_key');
     fileNameKey = element.getAttribute('data-file_name_key');
@@ -106,8 +107,11 @@ function uploadFile(tempInput)
 
         storedFiles.set(fileKey, fileObject);
 
-        fileSelected = document.getElementById(`fileSelected_${fileKey}`);
-        fileSelected.classList.remove('d-none');
+        // Change upload button from primary to success
+        uploadButton.classList.remove('btn-primary');
+        uploadButton.classList.add('btn-success');
+        // Change the upload button fa icon from upload to check
+        uploadButton.innerHTML = '<i class="fa fa-check me-1"></i> Uploaded';
 
         cropperContainer.classList.add('d-none');
         cropperContainer.innerHTML = '';
@@ -158,8 +162,14 @@ function uploadFile(tempInput)
 
         storedFiles.set(fileKey, fileObject);
 
-        fileSelected = document.getElementById(`fileSelected_${fileKey}`);
-        fileSelected.classList.remove('d-none');
+        // Change upload button from primary to success
+        uploadButton.classList.remove('btn-primary');
+        uploadButton.classList.add('btn-success');
+        // Change the upload button fa icon from upload to check
+        uploadButton.innerHTML = '<i class="fa fa-check me-1"></i> Uploaded';
+
+        cropperContainerPreview.classList.add('d-none');
+        cropperContainerPreview.innerHTML = '';
 
         pdfPreview.classList.add('d-none');
         pdfPreviewEmbed.src = '';

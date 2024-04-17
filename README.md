@@ -14,20 +14,16 @@ This boilerplate code can be used to upload images & pdfs in an interactive way 
 <input type="hidden" class="form-control" name="my_file">
 <input type="hidden" class="form-control" name="my_file_name">
 
-<button type="button" id="fileSelected_my_file" class="btn btn-success d-none" data-bs-toggle="tooltip" data-bs-dismiss="click" title="File Chosen">
-    <i class="fas fa-check"></i>
-</button>
-
-<button type="button" class="btn btn-primary" style="margin-left: 5px;" onclick="openModal(this)" data-file_key="my_file" data-file_name_key="my_file_name">
-    Upload
+<button type="button" class="btn btn-primary d-flex align-items-center" onclick="openModal(this)" data-file_key="my_file" data-file_name_key="my_file_name">
+    <i class="fa fa-upload me-1"></i> Upload
 </button>
 ```
 
 The two input type hidden tags are used to submit the uploaded file and the optional file name respectively.
 
-Out of the two buttons, the first button is just used to indicate that the file upload is successful. It has no other functionality. The second button is used to initiate the file upload modal.
+The upload button is used to initiate the file upload modal.
 
-The value of name attribute of the first input type hidden tag should be used as the value for the `data-file_key` attribute of the second button. And the value of name attribute of the second input type hidden tag should be used as the value for the `data-file_name_key` attribute of the second button.
+The value of name attribute of the first input type hidden tag should be used as the value for the `data-file_key` attribute of the upload button. And the value of name attribute of the second input type hidden tag should be used as the value for the `data-file_name_key` attribute of the upload button.
 
 #### Include the following code outside the form:
 
@@ -105,7 +101,7 @@ Cropper Js is needed to crop images for image upload:
 ```
 
 ### Font Awesome
-Font Awesome icon is used to indicate that the file upload is successful:
+Font Awesome icons are used to highlight the upload button:
 
 ```
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
