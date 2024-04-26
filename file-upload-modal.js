@@ -179,7 +179,7 @@ function uploadFile(tempInput)
     }
     else
     {
-        toastr.error('File type not supported');
+        alert('File type not supported');
         return;
     }
 }
